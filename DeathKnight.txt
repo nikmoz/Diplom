@@ -1,0 +1,8 @@
+F T Ch	Type  String
+0 1 0.8 String Frostmourne hungers.
+0 4 0.2 String For the Lich King!
+1 2 0.5 String I was a fool to trust in the light.
+1 2 0.5 String The Lich King has given me true power!
+4 2 0.33 String I will be twice the king my father was.
+4 2 0.33 String Lordaeron shall be reborn.
+4 3 0.33 String Glory to the Scourge!

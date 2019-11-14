@@ -1,0 +1,8 @@
+F T Ch	Type  String
+0 1 0.8 String A sound plan.
+0 4 0.2 String For my father the King!
+1 2 0.5 String It isn't easy being a prince.
+1 2 0.5 String I will bring honor to my father and my kingdom.
+4 2 0.33 String Light, guide my path.
+4 2 0.33 String Light, give me strength.
+4 3 0.33 String For Lordaeron!
