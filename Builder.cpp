@@ -20,9 +20,22 @@ int Builder::PreBuild(std::ifstream& File)
 	return Size;
 }
 
+bool Builder::CheckIRunnable(const std::string& String, std::shared_ptr<IRunnable> IRunnable)
+{
+	const auto IPos=List_.find(String);
+	if(IPos!=List_.end())
+	{
+		IRunnable=IPos->second;
+		return true;
+	}
+	return false;
+}
+
 void Builder::Build(std::ifstream& File, const std::shared_ptr<Chain>& Head)
 {
 	const auto Size=Builder::PreBuild(File);
+
+	std::unordered_map<std::string,std::shared_ptr<IRunnable>> List;
 	
 	Head->Arcs.reserve(Size);
 	
@@ -38,44 +51,25 @@ void Builder::Build(std::ifstream& File, const std::shared_ptr<Chain>& Head)
 		File.get();
 		std::getline(File,String);
 
-		//TODO(Nick):Instead of creating new IRunnable, I should check if it exists and create new only if I could find one
-		if (Type == "Chain")
+		if(!CheckIRunnable(String,TmpArc->IRunnable))
 		{
-			auto IPos=ChainList_.find(String);
-			if(IPos!=ChainList_.end())
-			{
-				TmpArc->IRunnable=IPos->second;
-			}
-			else
+			if (Type == "Chain")
 			{
 				auto Chain = std::make_shared<class Chain>();
 				TmpArc->IRunnable = Chain;
-				ChainList_.insert({String,Chain});
-				
+				List.insert({String, Chain});
+
 				std::ifstream NewFile(String);
 				Build(NewFile, Chain);
 			}
+			else if (Type == "String")
+			{
+				const auto StringRunner = std::make_shared<StringConcat>(String);
+				TmpArc->IRunnable = StringRunner;
+				//List.insert({String, StringRunner});
+			}
+			else throw "Wrong IRunnable type";
 		}
-		else if (Type == "String")
-		{
-			#ifdef STRING_OPTIMIZATION
-				auto IPos=StringList_.find(String);
-				if(IPos!=StringList_.end())
-				{
-					TmpArc->IRunnable=IPos->second;
-				}
-				else
-				{
-					auto StringRunner = std::make_shared<StringConcat>(String);
-					TmpArc->IRunnable = StringRunner;
-					StringList_.insert({String,StringRunner});
-				}
-			#else
-			TmpArc->IRunnable = std::make_shared<StringConcat>(String);
-			#endif
-		}
-		else throw "Wrong IRunnable type";
-
 		Head->Arcs.push_back(TmpArc);
 	}
 	File.close();
