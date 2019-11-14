@@ -20,22 +20,16 @@ int Builder::PreBuild(std::ifstream& File)
 	return Size;
 }
 
-bool Builder::CheckIRunnable(const std::string& String, std::shared_ptr<IRunnable> IRunnable)
+std::shared_ptr<Chain> Builder::CheckChain(const std::string& String)
 {
-	const auto IPos=List_.find(String);
-	if(IPos!=List_.end())
-	{
-		IRunnable=IPos->second;
-		return true;
-	}
-	return false;
+	
+	return nullptr;
 }
 
-void Builder::Build(std::ifstream& File, const std::shared_ptr<Chain>& Head)
+void Builder::Build(std::ifstream& File,const std::shared_ptr<Chain>& Head)
 {
 	const auto Size=Builder::PreBuild(File);
 
-	std::unordered_map<std::string,std::shared_ptr<IRunnable>> List;
 	
 	Head->Arcs.reserve(Size);
 	
@@ -44,32 +38,36 @@ void Builder::Build(std::ifstream& File, const std::shared_ptr<Chain>& Head)
 		auto TmpArc=std::make_shared<Arc>();
 		
 		std::string Type,String;
-		File>>TmpArc->From;
-		File>>TmpArc->To;
-		File>>TmpArc->Chance;
-		File>>Type;
+		File>>TmpArc->From>>TmpArc->To>>TmpArc->Chance>>Type;
 		File.get();
 		std::getline(File,String);
-
-		if(!CheckIRunnable(String,TmpArc->IRunnable))
+		if (Type == "Chain")
 		{
-			if (Type == "Chain")
+			const auto IPos=List_.find(String);
+			if(IPos!=List_.end())
 			{
-				auto Chain = std::make_shared<class Chain>();
-				TmpArc->IRunnable = Chain;
-				List.insert({String, Chain});
-
+				TmpArc->IRunnable = IPos->second;
 				std::ifstream NewFile(String);
-				Build(NewFile, Chain);
+				Build(NewFile,IPos->second);
 			}
-			else if (Type == "String")
+			else
 			{
-				const auto StringRunner = std::make_shared<StringConcat>(String);
-				TmpArc->IRunnable = StringRunner;
-				//List.insert({String, StringRunner});
+				auto ChainT=std::make_shared<Chain>();
+				ChainT=std::make_shared<Chain>();
+				List_.insert({String, ChainT});
+				TmpArc->IRunnable = ChainT;
+				std::ifstream NewFile(String);
+				Build(NewFile,ChainT);
 			}
-			else throw "Wrong IRunnable type";
 		}
+		else if (Type == "String")
+		{
+			const auto StringRunner = std::make_shared<StringConcat>(String);
+			TmpArc->IRunnable = StringRunner;
+			//List.insert({String, StringRunner});
+		}
+		else throw "Wrong IRunnable type";
+		
 		Head->Arcs.push_back(TmpArc);
 	}
 	File.close();

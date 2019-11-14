@@ -15,7 +15,6 @@ private:
 	std::random_device RandomDevice_;
 	std::default_random_engine Generator_;
 	std::uniform_real_distribution<> Distribution_;
-
 	
 	int CurrentArc_;
 };
