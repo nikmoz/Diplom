@@ -3,20 +3,30 @@
 Chain::Chain():Generator_(RandomDevice_()),Distribution_(0.0,1.0),CurrentArc_(0){}
 void Chain::Run()
 {
-	const auto Chance = Distribution_(Generator_);
-
-	auto SumChance(0.0);
-	for (const auto& Arc : Arcs)
+	while (true)
 	{
-		if(Arc->From==CurrentArc_)
+		char IsFound=0;
+		const auto Chance = Distribution_(Generator_);
+
+		auto SumChance(0.0);
+		for (const auto& Arc : Arcs)
 		{
-			SumChance += Arc->Chance;
-			if (SumChance - Chance>0)
+			if (Arc->From == CurrentArc_)
 			{
-				CurrentArc_= Arc->To;
-				Arc->IRunnable->Run();
-				break;
+				SumChance += Arc->Chance;
+				if (SumChance - Chance > 0)
+				{
+					CurrentArc_ = Arc->To;
+					Arc->IRunnable->Run();
+					IsFound=1;
+					break;
+				}
 			}
+		}
+		if(!IsFound)
+		{
+			CurrentArc_=0;
+			break;
 		}
 	}
 }
