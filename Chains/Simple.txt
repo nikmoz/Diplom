@@ -1,7 +1,7 @@
 F T Ch	Type  String
-0 1 0.7 String Hi
-0 4 0.3 String Nice weather we having
+0 1 0.7 String Hi!
+0 4 0.3 String Nice weather we having.
 1 2 0.5 String How is your day?
-1 3 0.5 String Man,Im dying to sleep right now
+1 3 0.5 String Man,Im dying to sleep right now.
 4 5 0.1 String Anyway how is your sex life?
 4 5 0.9 String How is your life going?

@@ -1,16 +1,26 @@
-#include "Builder.h"
+#include "Markov/Builder.h"
 #include <iostream>
 
 int main()
 {
-	auto Head=std::make_shared<class Chain>();
-	std::ifstream File("TestChain.txt");
-	
-	Builder::Build(File,Head);
-	for (auto I(0);I<10;I++)
+	auto head = std::make_shared<class Chain>();
+	std::ifstream file("Chains/TestChain.txt");
+
+	try
 	{
-		Head->Run();
-		std::cout<<'\n';
+		Builder::Build(file, head);
+		for (auto i(0); i < 10; i++)
+		{
+			head->Run();
+			head->Reset();
+			std::cout << '\n';
+		}
 	}
+	catch (const char *msg)
+	{
+		std::cerr << msg << '\n';
+	}
+
+	getchar(); //TODO delete
 	return 0;
 }

@@ -1,68 +1,69 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="Source.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Tools\RandomGenerator.cpp">
+      <Filter>Tools</Filter>
     </ClCompile>
-    <ClCompile Include="StringConcat.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Markov\Builder.cpp">
+      <Filter>Markov</Filter>
     </ClCompile>
-    <ClCompile Include="Chain.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Markov\Chain.cpp">
+      <Filter>Markov</Filter>
     </ClCompile>
-    <ClCompile Include="Builder.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="Markov\StringConcat.cpp">
+      <Filter>Markov</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Arc.h">
-      <Filter>Header Files</Filter>
+    <Filter Include="Tools">
+      <UniqueIdentifier>{d33af63a-85c1-4364-9a8f-5a67ca3ae847}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Markov">
+      <UniqueIdentifier>{48ffdc35-82bc-471e-ade7-f5efebe1ceae}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Chains">
+      <UniqueIdentifier>{cb10d7ab-160d-47db-803d-e3d6549951c9}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Tools\RandomGenerator.h">
+      <Filter>Tools</Filter>
     </ClInclude>
-    <ClInclude Include="IRunnable.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Markov\Arc.h">
+      <Filter>Markov</Filter>
     </ClInclude>
-    <ClInclude Include="StringConcat.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Markov\Builder.h">
+      <Filter>Markov</Filter>
     </ClInclude>
-    <ClInclude Include="Chain.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Markov\Chain.h">
+      <Filter>Markov</Filter>
     </ClInclude>
-    <ClInclude Include="Builder.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="Markov\IRunnable.h">
+      <Filter>Markov</Filter>
+    </ClInclude>
+    <ClInclude Include="Markov\StringConcat.h">
+      <Filter>Markov</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Text Include="TestChain.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="Chains\Arthas.txt">
+      <Filter>Chains</Filter>
     </Text>
-    <Text Include="Sweet.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="Chains\DeathKnight.txt">
+      <Filter>Chains</Filter>
     </Text>
-    <Text Include="Arthas.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="Chains\Paladin.txt">
+      <Filter>Chains</Filter>
     </Text>
-    <Text Include="Simple.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="Chains\Simple.txt">
+      <Filter>Chains</Filter>
     </Text>
-    <Text Include="Paladin.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="Chains\Sweet.txt">
+      <Filter>Chains</Filter>
     </Text>
-    <Text Include="DeathKnight.txt">
-      <Filter>Resource Files</Filter>
+    <Text Include="Chains\TestChain.txt">
+      <Filter>Chains</Filter>
     </Text>
   </ItemGroup>
 </Project>

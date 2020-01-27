@@ -3,7 +3,7 @@
 class IRunnable
 {
 public:
-	virtual void Run()=0;
+	virtual void Run() = 0;
+	virtual void Reset() = 0;
 	virtual ~IRunnable() = default;
 };
-

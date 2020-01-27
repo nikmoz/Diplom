@@ -1,5 +1,5 @@
 F T Ch  Type  String
 0 1 0.8 Chain Simple.txt
 0 2 0.2 Chain Arthas.txt
-2 1 0.6 Chain Simple.txt
+1 1 0.6 Chain Simple.txt
 2 2 0.4 Chain Arthas.txt

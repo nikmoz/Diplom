@@ -18,6 +18,29 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Markov\Builder.cpp" />
+    <ClCompile Include="Markov\Chain.cpp" />
+    <ClCompile Include="Markov\StringConcat.cpp" />
+    <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Tools\RandomGenerator.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Markov\Arc.h" />
+    <ClInclude Include="Markov\Builder.h" />
+    <ClInclude Include="Markov\Chain.h" />
+    <ClInclude Include="Markov\IRunnable.h" />
+    <ClInclude Include="Markov\StringConcat.h" />
+    <ClInclude Include="Tools\RandomGenerator.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Chains\Arthas.txt" />
+    <Text Include="Chains\DeathKnight.txt" />
+    <Text Include="Chains\Paladin.txt" />
+    <Text Include="Chains\Simple.txt" />
+    <Text Include="Chains\Sweet.txt" />
+    <Text Include="Chains\TestChain.txt" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <ProjectGuid>{088EF176-18EB-48E3-BC04-6F0FB8333037}</ProjectGuid>
@@ -79,7 +102,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>P:\Diplom\Tools;P:\Diplom\Markov;P:\Diplom\Chains;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -130,27 +153,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Builder.cpp" />
-    <ClCompile Include="Chain.cpp" />
-    <ClCompile Include="Source.cpp" />
-    <ClCompile Include="StringConcat.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Arc.h" />
-    <ClInclude Include="Builder.h" />
-    <ClInclude Include="Chain.h" />
-    <ClInclude Include="IRunnable.h" />
-    <ClInclude Include="StringConcat.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Arthas.txt" />
-    <Text Include="DeathKnight.txt" />
-    <Text Include="Paladin.txt" />
-    <Text Include="Simple.txt" />
-    <Text Include="Sweet.txt" />
-    <Text Include="TestChain.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
