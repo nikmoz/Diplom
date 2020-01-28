@@ -2,15 +2,8 @@
 #include <iostream>
 
 RegexWrapper::RegexWrapper(const std::string& regex)
+	: m_regex(regex)
 {
-	try
-	{
-		m_regex = std::regex(regex);	
-	}
-	catch (std::exception& e)
-	{
-		std::cerr<<e.what()<<std::endl;
-	}
 }
 
 bool RegexWrapper::IsMatch(const std::string& string)
