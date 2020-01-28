@@ -1,5 +1,7 @@
 #pragma once
 #include "Chain.h"
+#include "StringConcat.h"
+#include "RegexWrapper.h"
 #include <fstream>
 #include <unordered_map>
 
@@ -17,6 +19,7 @@ public:
 	///
 	static void Build(std::ifstream &file, const std::shared_ptr<Chain> &head);
 
+	inline static std::vector<std::shared_ptr<StringConcat>> m_strings;
 private:
 	///
 	///@brief Calculates arcs amount
@@ -27,5 +30,7 @@ private:
 	static int PreBuild(std::ifstream &file);
 
 	static std::string ParsePath(const std::string& path);
-	inline static std::unordered_map<std::string, std::shared_ptr<Chain>> m_list{};
+
+	inline static RegexWrapper m_variableRegex{"({[A-Za-z]+})"};
+	inline static std::unordered_map<std::string, std::shared_ptr<Chain>> m_chainList{};
 };
