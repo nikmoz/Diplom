@@ -21,17 +21,21 @@
   <ItemGroup>
     <ClCompile Include="Markov\Builder.cpp" />
     <ClCompile Include="Markov\Chain.cpp" />
+    <ClCompile Include="Markov\Linker.cpp" />
     <ClCompile Include="Markov\StringConcat.cpp" />
     <ClCompile Include="Source.cpp" />
     <ClCompile Include="Tools\RandomGenerator.cpp" />
+    <ClCompile Include="Tools\RegexWrapper.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Markov\Arc.h" />
     <ClInclude Include="Markov\Builder.h" />
     <ClInclude Include="Markov\Chain.h" />
     <ClInclude Include="Markov\IRunnable.h" />
+    <ClInclude Include="Markov\Linker.h" />
     <ClInclude Include="Markov\StringConcat.h" />
     <ClInclude Include="Tools\RandomGenerator.h" />
+    <ClInclude Include="Tools\RegexWrapper.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="Chains\Arthas.txt" />

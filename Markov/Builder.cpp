@@ -4,7 +4,7 @@
 
 static constexpr char ResourcePath[] = "Chains/";
 
-int Builder::PreBuild(std::ifstream &file)
+size_t Builder::PreBuild(std::ifstream &file)
 {
 	if (!file)
 	{
@@ -17,8 +17,7 @@ int Builder::PreBuild(std::ifstream &file)
 
 	const auto backup = file.tellg();
 
-	//NOTE(Nick):Count arcs to reserve
-	const int size = std::count(std::istreambuf_iterator<char>(file),
+	const size_t size = std::count(std::istreambuf_iterator<char>(file),
 								std::istreambuf_iterator<char>(), '\n');
 
 	file.clear();
@@ -58,8 +57,8 @@ void Builder::Build(std::ifstream &file, const std::shared_ptr<Chain> &head)
 		{
 			std::string file_path = ParsePath(string);
 
-			const auto iPos = m_list.find(string);
-			if (iPos != m_list.end())
+			const auto iPos = m_chainList.find(string);
+			if (iPos != m_chainList.end())
 			{
 				tmpArc.m_iRunnable = iPos->second;
 				std::ifstream newFile(file_path);
@@ -69,7 +68,7 @@ void Builder::Build(std::ifstream &file, const std::shared_ptr<Chain> &head)
 			{
 				auto chainT = std::make_shared<Chain>();
 				chainT = std::make_shared<Chain>();
-				m_list.insert({string, chainT});
+				m_chainList.insert({string, chainT});
 				tmpArc.m_iRunnable = chainT;
 				std::ifstream newFile(file_path);
 				Build(newFile, chainT);
@@ -78,6 +77,10 @@ void Builder::Build(std::ifstream &file, const std::shared_ptr<Chain> &head)
 		else if (type == "String")
 		{
 			const auto stringRunner = std::make_shared<StringConcat>(string);
+			if(m_variableRegex.IsMatch(string))
+			{
+				m_strings.push_back(stringRunner);
+			}
 			tmpArc.m_iRunnable = stringRunner;
 		}
 		else

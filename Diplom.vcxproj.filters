@@ -14,6 +14,12 @@
     <ClCompile Include="Markov\StringConcat.cpp">
       <Filter>Markov</Filter>
     </ClCompile>
+    <ClCompile Include="Tools\RegexWrapper.cpp">
+      <Filter>Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="Markov\Linker.cpp">
+      <Filter>Markov</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Tools">
@@ -43,6 +49,12 @@
       <Filter>Markov</Filter>
     </ClInclude>
     <ClInclude Include="Markov\StringConcat.h">
+      <Filter>Markov</Filter>
+    </ClInclude>
+    <ClInclude Include="Tools\RegexWrapper.h">
+      <Filter>Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="Markov\Linker.h">
       <Filter>Markov</Filter>
     </ClInclude>
   </ItemGroup>
