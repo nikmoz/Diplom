@@ -27,7 +27,7 @@ public:
 	///@return std::shared_ptr<std::cmatch> matches sptr 
 	///
 	std::shared_ptr<std::cmatch> FindMatches(const std::string& string);
-	std::string ReplaceMatches(const std::string& string,const std::string& replacer) const;
+	[[nodiscard]] std::string ReplaceMatches(const std::string& string,const std::string& replacer) const;
 private:
 	std::regex m_regex;
 	std::cmatch m_match;

@@ -22,5 +22,6 @@ int main()
 	}
 
 	getchar(); //TODO delete
+	file.close();
 	return 0;
 }

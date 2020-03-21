@@ -4,7 +4,9 @@
 
 static constexpr char ResourcePath[] = "Chains/";
 
-size_t Builder::PreBuild(std::ifstream &file)
+std::shared_ptr<Linker> Builder::m_linker = std::make_shared<Linker>("Chains/Global.txt");
+
+size_t Builder::PreBuild(std::ifstream& file)
 {
 	if (!file)
 	{
@@ -18,7 +20,7 @@ size_t Builder::PreBuild(std::ifstream &file)
 	const auto backup = file.tellg();
 
 	const size_t size = std::count(std::istreambuf_iterator<char>(file),
-								std::istreambuf_iterator<char>(), '\n');
+		std::istreambuf_iterator<char>(), '\n');
 
 	file.clear();
 	file.seekg(backup);
@@ -34,15 +36,15 @@ std::string Builder::ParsePath(const std::string& path)
 	return path;
 }
 
-void Builder::Build(std::ifstream &file, const std::shared_ptr<Chain> &head)
-{	
+void Builder::Build(std::ifstream& file, const std::shared_ptr<Chain>& head)
+{
 	const auto size = PreBuild(file);
 
 	if (size == 0)
 	{
 		throw "File not found or empty";
 	}
-	
+
 	head->m_arcs.reserve(size);
 
 	while (!file.eof())
@@ -67,8 +69,7 @@ void Builder::Build(std::ifstream &file, const std::shared_ptr<Chain> &head)
 			else
 			{
 				auto chainT = std::make_shared<Chain>();
-				chainT = std::make_shared<Chain>();
-				m_chainList.insert({string, chainT});
+				m_chainList.insert({ string, chainT });
 				tmpArc.m_iRunnable = chainT;
 				std::ifstream newFile(file_path);
 				Build(newFile, chainT);
@@ -76,11 +77,11 @@ void Builder::Build(std::ifstream &file, const std::shared_ptr<Chain> &head)
 		}
 		else if (type == "String")
 		{
-			const auto stringRunner = std::make_shared<StringConcat>(string);
-			if(m_variableRegex.IsMatch(string))
+			if (m_variableRegex.IsMatch(string))
 			{
-				m_strings.push_back(stringRunner);
+				string = m_linker->Link(string);
 			}
+			const auto stringRunner = std::make_shared<StringConcat>(string);
 			tmpArc.m_iRunnable = stringRunner;
 		}
 		else

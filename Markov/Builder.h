@@ -2,6 +2,7 @@
 #include "Chain.h"
 #include "StringConcat.h"
 #include "RegexWrapper.h"
+#include "Linker.h"
 #include <fstream>
 #include <unordered_map>
 
@@ -18,8 +19,6 @@ public:
 	///@param head Chain starting node
 	///
 	static void Build(std::ifstream &file, const std::shared_ptr<Chain> &head);
-
-	inline static std::vector<std::shared_ptr<StringConcat>> m_strings;
 private:
 	///
 	///@brief Calculates arcs amount
@@ -31,6 +30,7 @@ private:
 
 	static std::string ParsePath(const std::string& path);
 
-	inline static RegexWrapper m_variableRegex{"(@[a-zA-z]+@)"};
+	inline static RegexWrapper m_variableRegex{"@\\w+@"};
 	inline static std::unordered_map<std::string, std::shared_ptr<Chain>> m_chainList{};
+	static std::shared_ptr<Linker> m_linker;
 };

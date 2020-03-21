@@ -1,5 +1,6 @@
 #include "Chain.h"
 #include "RandomGenerator.h"
+#include <iostream>
 
 Chain::Chain() : m_currentArc(0) {}
 

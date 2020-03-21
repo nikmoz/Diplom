@@ -8,23 +8,23 @@ RegexWrapper::RegexWrapper(const std::string& regex)
 
 bool RegexWrapper::IsMatch(const std::string& string)
 {
-	std::regex_match(string.c_str(),m_match,m_regex);
-	return m_match.ready();
+	std::regex_search(string.c_str(),m_match,m_regex);
+	return !m_match.empty();
 }
 
 std::string RegexWrapper::FindMatch(const std::string& string)
 {
-	std::regex_match(string.c_str(),m_match,m_regex);
+	std::regex_search(string.c_str(),m_match,m_regex);
 	if(m_match.empty())
 	{
 		return "";
 	}
-	return m_match.str(1);
+	return m_match[0];
 }
 
 std::shared_ptr<std::cmatch> RegexWrapper::FindMatches(const std::string& string)
 {
-	std::regex_match(string.c_str(),m_match,m_regex);
+	std::regex_search(string.c_str(),m_match,m_regex);
 	return std::make_shared<std::cmatch>(m_match);
 }
 

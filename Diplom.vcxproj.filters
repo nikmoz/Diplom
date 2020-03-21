@@ -77,5 +77,8 @@
     <Text Include="Chains\TestChain.txt">
       <Filter>Chains</Filter>
     </Text>
+    <Text Include="Chains\Global.txt">
+      <Filter>Chains</Filter>
+    </Text>
   </ItemGroup>
 </Project>
