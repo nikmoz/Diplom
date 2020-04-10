@@ -4,9 +4,19 @@
 
 static constexpr char ResourcePath[] = "Chains/";
 
-std::shared_ptr<Linker> Builder::m_linker = std::make_shared<Linker>("Chains/Global.txt");
+Builder::Builder()
+{
+	try
+	{
+		m_linker = std::make_shared<Linker>("Chains/Global.txt");
+	}
+	catch (const char* msg)
+	{
+		throw msg;
+	}
+}
 
-size_t Builder::PreBuild(std::ifstream& file)
+size_t Builder::PreBuild(std::ifstream& file) const
 {
 	if (!file)
 	{
@@ -57,7 +67,7 @@ void Builder::Build(std::ifstream& file, const std::shared_ptr<Chain>& head)
 		std::getline(file, string);
 		if (type == "Chain")
 		{
-			std::string file_path = ParsePath(string);
+			auto file_path = ParsePath(string);
 
 			const auto iPos = m_chainList.find(string);
 			if (iPos != m_chainList.end())

@@ -12,13 +12,14 @@
 class Builder
 {
 public:
+	Builder();
 	///
 	///@brief Builds chain from a file
 	///
 	///@param file file
 	///@param head Chain starting node
 	///
-	static void Build(std::ifstream &file, const std::shared_ptr<Chain> &head);
+	void Build(std::ifstream &file, const std::shared_ptr<Chain> &head);
 private:
 	///
 	///@brief Calculates arcs amount
@@ -26,11 +27,11 @@ private:
 	///@param file file
 	///@return int arcs amount
 	///
-	static size_t PreBuild(std::ifstream &file);
+	size_t PreBuild(std::ifstream &file) const;
 
 	static std::string ParsePath(const std::string& path);
 
-	inline static RegexWrapper m_variableRegex{"@\\w+@"};
-	inline static std::unordered_map<std::string, std::shared_ptr<Chain>> m_chainList{};
-	static std::shared_ptr<Linker> m_linker;
+	RegexWrapper m_variableRegex{"@\\w+@"};
+	std::unordered_map<std::string, std::shared_ptr<Chain>> m_chainList{};
+	std::shared_ptr<Linker> m_linker;
 };
