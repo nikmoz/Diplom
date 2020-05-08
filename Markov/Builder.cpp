@@ -29,6 +29,15 @@ size_t Builder::PreBuild(std::ifstream& file) const
 
 	const auto backup = file.tellg();
 
+	//size_t size = 0;
+	//while(!file.eof())
+	//{
+	//	std::string line;
+	//	std::getline(file,line);
+	//	std::cout<<line<<std::endl;
+
+	//	size++;
+	//}
 	const size_t size = std::count(std::istreambuf_iterator<char>(file),
 		std::istreambuf_iterator<char>(), '\n');
 
@@ -73,14 +82,16 @@ void Builder::Build(std::ifstream& file, const std::shared_ptr<Chain>& head)
 			if (iPos != m_chainList.end())
 			{
 				tmpArc.m_iRunnable = iPos->second;
-				std::ifstream newFile(file_path);
-				Build(newFile, iPos->second);
+
+				//std::ifstream newFile(file_path);
+				//Build(newFile, iPos->second);
 			}
 			else
 			{
 				auto chainT = std::make_shared<Chain>();
 				m_chainList.insert({ string, chainT });
 				tmpArc.m_iRunnable = chainT;
+
 				std::ifstream newFile(file_path);
 				Build(newFile, chainT);
 			}

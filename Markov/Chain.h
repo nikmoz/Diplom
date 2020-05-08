@@ -24,5 +24,6 @@ public:
 	std::vector<Arc> m_arcs{};
 
 private:
+	bool visited = false;
 	int m_currentArc;
 };

@@ -39,6 +39,17 @@ void Chain::Reset()
 	m_currentArc = 0;
 	for (auto& arc: m_arcs)
 	{
-		arc.m_iRunnable->Reset();
+		if (!arc.visited)
+		{
+			arc.visited = true;
+			arc.m_iRunnable->Reset();
+		}
+	}
+	for (auto& arc: m_arcs)
+	{
+		if(arc.visited)
+		{
+			arc.visited = false;
+		}
 	}
 }
