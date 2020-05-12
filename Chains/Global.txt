@@ -1,0 +1,3 @@
+define name King
+define country Lordaeron
+define power Light
