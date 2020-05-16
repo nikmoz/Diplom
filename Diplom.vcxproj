@@ -38,10 +38,13 @@
     <ClInclude Include="Tools\RegexWrapper.h" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="Chains\Angry.txt" />
     <Text Include="Chains\Arthas.txt" />
     <Text Include="Chains\DeathKnight.txt" />
     <Text Include="Chains\Global.txt" />
+    <Text Include="Chains\Happy.txt" />
     <Text Include="Chains\Paladin.txt" />
+    <Text Include="Chains\Sad.txt" />
     <Text Include="Chains\Simple.txt" />
     <Text Include="Chains\Sweet.txt" />
     <Text Include="Chains\TestChain.txt" />

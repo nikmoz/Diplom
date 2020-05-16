@@ -80,5 +80,14 @@
     <Text Include="Chains\Global.txt">
       <Filter>Chains</Filter>
     </Text>
+    <Text Include="Chains\Happy.txt">
+      <Filter>Chains</Filter>
+    </Text>
+    <Text Include="Chains\Sad.txt">
+      <Filter>Chains</Filter>
+    </Text>
+    <Text Include="Chains\Angry.txt">
+      <Filter>Chains</Filter>
+    </Text>
   </ItemGroup>
 </Project>

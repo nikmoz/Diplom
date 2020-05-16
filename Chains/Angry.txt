@@ -1,0 +1,7 @@
+F T Ch	Type  String
+0 1 0.5 String Whats up?
+0 2 0.5 String How about you go where you planned to go, and just live me here?
+1 3 0.5 String I don't have a trouble with you
+1 5 0.5 Chain Happy.txt
+2 3 0.5 String I'm just not in the mood to talk to you.
+2 6 0.33 Chain Sad.txt

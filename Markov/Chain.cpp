@@ -14,13 +14,13 @@ void Chain::Run()
 		auto sumChance(0.0);
 		for (const auto &arc : m_arcs)
 		{
-			if (arc.m_from == m_currentArc)
+			if (arc->m_from == m_currentArc)
 			{
-				sumChance += arc.m_chance;
+				sumChance += arc->m_chance;
 				if (sumChance - chance > 0)
 				{
-					m_currentArc = arc.m_to;
-					arc.m_iRunnable->Run();
+					m_currentArc = arc->m_to;
+					arc->m_iRunnable->Run();
 					isFound = 1;
 					break;
 				}
@@ -34,22 +34,14 @@ void Chain::Run()
 	}
 }
 
-void Chain::Reset()
+bool Chain::IsPresent(unsigned state)
 {
-	m_currentArc = 0;
-	for (auto& arc: m_arcs)
+	for (auto s: m_arcs)
 	{
-		if (!arc.visited)
+		if(s->m_from == state || s->m_to==state)
 		{
-			arc.visited = true;
-			arc.m_iRunnable->Reset();
+			return true;
 		}
 	}
-	for (auto& arc: m_arcs)
-	{
-		if(arc.visited)
-		{
-			arc.visited = false;
-		}
-	}
+	return false;
 }

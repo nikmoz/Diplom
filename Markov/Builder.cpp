@@ -68,10 +68,10 @@ void Builder::Build(std::ifstream& file, const std::shared_ptr<Chain>& head)
 
 	while (!file.eof())
 	{
-		auto tmpArc = Arc{};
+		auto tmpArc = std::make_shared<Arc>();
 
 		std::string type, string;
-		file >> tmpArc.m_from >> tmpArc.m_to >> tmpArc.m_chance >> type;
+		file >> tmpArc->m_from >> tmpArc->m_to >> tmpArc->m_chance >> type;
 		file.get();
 		std::getline(file, string);
 		if (type == "Chain")
@@ -81,7 +81,7 @@ void Builder::Build(std::ifstream& file, const std::shared_ptr<Chain>& head)
 			const auto iPos = m_chainList.find(string);
 			if (iPos != m_chainList.end())
 			{
-				tmpArc.m_iRunnable = iPos->second;
+				tmpArc->m_iRunnable = iPos->second;
 
 				//std::ifstream newFile(file_path);
 				//Build(newFile, iPos->second);
@@ -90,7 +90,7 @@ void Builder::Build(std::ifstream& file, const std::shared_ptr<Chain>& head)
 			{
 				auto chainT = std::make_shared<Chain>();
 				m_chainList.insert({ string, chainT });
-				tmpArc.m_iRunnable = chainT;
+				tmpArc->m_iRunnable = chainT;
 
 				std::ifstream newFile(file_path);
 				Build(newFile, chainT);
@@ -103,7 +103,7 @@ void Builder::Build(std::ifstream& file, const std::shared_ptr<Chain>& head)
 				string = m_linker->Link(string);
 			}
 			const auto stringRunner = std::make_shared<StringConcat>(string);
-			tmpArc.m_iRunnable = stringRunner;
+			tmpArc->m_iRunnable = stringRunner;
 		}
 		else
 			throw "Wrong IRunnable type";
