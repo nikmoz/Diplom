@@ -23,21 +23,11 @@ size_t Builder::PreBuild(std::ifstream& file) const
 		return 0;
 	}
 
-	//NOTE(Nick): Temporary here so I can leave header in files
 	std::string header;
 	std::getline(file, header);
 
 	const auto backup = file.tellg();
 
-	//size_t size = 0;
-	//while(!file.eof())
-	//{
-	//	std::string line;
-	//	std::getline(file,line);
-	//	std::cout<<line<<std::endl;
-
-	//	size++;
-	//}
 	const size_t size = std::count(std::istreambuf_iterator<char>(file),
 		std::istreambuf_iterator<char>(), '\n');
 
@@ -83,8 +73,6 @@ void Builder::Build(std::ifstream& file, const std::shared_ptr<Chain>& head)
 			{
 				tmpArc->m_iRunnable = iPos->second;
 
-				//std::ifstream newFile(file_path);
-				//Build(newFile, iPos->second);
 			}
 			else
 			{
