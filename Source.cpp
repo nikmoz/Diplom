@@ -28,7 +28,19 @@ void Input(T& a,const std::string_view error = "", F&& validation = [](const T){
 		std::cout << "Invalid Value! " << error << std::endl;
 	}
 }
+std::shared_ptr<Chain> ResetChain(std::shared_ptr<Chain> head, std::string file_name)
+{
+	head.reset();
+	head = std::make_shared<class Chain>();
+	std::ifstream file("Chains/TestChain.txt");
 
+	Builder builder;
+
+	builder.Build(file, head);
+	file.close();
+
+	return head;
+}
 int main()
 {
 	auto head = std::make_shared<class Chain>();
@@ -43,10 +55,12 @@ int main()
 		Builder builder;
 		
 		builder.Build(file, head);
+		file.close();
+
 		for (auto i(0U); i < n; i++)
 		{
 			head->Run();
-			head->Reset();
+			head = ResetChain(head,"Chains/TestChain.txt");
 			std::cout << '\n';
 		}
 	}
@@ -60,7 +74,6 @@ int main()
 	{
 		if (GetAsyncKeyState(VK_ESCAPE))
 		{
-			file.close();
 			return 0;
 		}
 	}

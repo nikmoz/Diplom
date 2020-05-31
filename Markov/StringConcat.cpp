@@ -6,7 +6,3 @@ void StringConcat::Run()
 {
 	std::cout << m_sentence << ' ';
 }
-
-void StringConcat::Reset()
-{
-}

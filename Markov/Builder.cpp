@@ -23,21 +23,11 @@ size_t Builder::PreBuild(std::ifstream& file) const
 		return 0;
 	}
 
-	//NOTE(Nick): Temporary here so I can leave header in files
 	std::string header;
 	std::getline(file, header);
 
 	const auto backup = file.tellg();
 
-	//size_t size = 0;
-	//while(!file.eof())
-	//{
-	//	std::string line;
-	//	std::getline(file,line);
-	//	std::cout<<line<<std::endl;
-
-	//	size++;
-	//}
 	const size_t size = std::count(std::istreambuf_iterator<char>(file),
 		std::istreambuf_iterator<char>(), '\n');
 
@@ -68,10 +58,10 @@ void Builder::Build(std::ifstream& file, const std::shared_ptr<Chain>& head)
 
 	while (!file.eof())
 	{
-		auto tmpArc = Arc{};
+		auto tmpArc = std::make_shared<Arc>();
 
 		std::string type, string;
-		file >> tmpArc.m_from >> tmpArc.m_to >> tmpArc.m_chance >> type;
+		file >> tmpArc->m_from >> tmpArc->m_to >> tmpArc->m_chance >> type;
 		file.get();
 		std::getline(file, string);
 		if (type == "Chain")
@@ -81,16 +71,14 @@ void Builder::Build(std::ifstream& file, const std::shared_ptr<Chain>& head)
 			const auto iPos = m_chainList.find(string);
 			if (iPos != m_chainList.end())
 			{
-				tmpArc.m_iRunnable = iPos->second;
+				tmpArc->m_iRunnable = iPos->second;
 
-				//std::ifstream newFile(file_path);
-				//Build(newFile, iPos->second);
 			}
 			else
 			{
 				auto chainT = std::make_shared<Chain>();
 				m_chainList.insert({ string, chainT });
-				tmpArc.m_iRunnable = chainT;
+				tmpArc->m_iRunnable = chainT;
 
 				std::ifstream newFile(file_path);
 				Build(newFile, chainT);
@@ -103,7 +91,7 @@ void Builder::Build(std::ifstream& file, const std::shared_ptr<Chain>& head)
 				string = m_linker->Link(string);
 			}
 			const auto stringRunner = std::make_shared<StringConcat>(string);
-			tmpArc.m_iRunnable = stringRunner;
+			tmpArc->m_iRunnable = stringRunner;
 		}
 		else
 			throw "Wrong IRunnable type";

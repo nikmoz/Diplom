@@ -20,10 +20,6 @@ public:
 	///
 	void Run() override;
 
-	///
-	///@brief Resets state 
-	///
-	void Reset() override;
 private:
 	std::string m_sentence;
 };

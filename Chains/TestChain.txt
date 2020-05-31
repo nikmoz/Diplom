@@ -1,5 +1,10 @@
 F T Ch  Type  String
-0 1 0.2 Chain Simple.txt
-0 2 0.8 Chain Arthas.txt
-1 1 0.8 Chain Simple.txt
-2 2 0.6 Chain Arthas.txt
+0 1 0.33 Chain Happy.txt
+0 2 0.33 Chain Sad.txt
+0 3 0.33 Chain Angry.txt
+1 2 0.33 Chain Happy.txt
+1 3 0.2 Chain Angry.txt
+1 2 0.2 Chain Sad.txt
+2 3 0.33 Chain Sad.txt
+3 2 0.33 Chain Sad.txt
+3 1 0.5 Chain Happy.txt
